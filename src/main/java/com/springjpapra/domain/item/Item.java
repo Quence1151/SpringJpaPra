@@ -13,6 +13,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 @Getter //@Setter를 사용하지 말고 비즈니스 로직을 통해서 값 변경
+@Setter
 public abstract class Item {
     @Id @GeneratedValue
     @Column(name = "item_id")

@@ -31,6 +31,7 @@
   - repository
   - service
   - web
+
 ### 계층형 구조
 - controller, web: 웹 계층
 - service: 비즈니스 로직, 트랜잭션 처리
