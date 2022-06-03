@@ -36,6 +36,8 @@ dependencies {
     compileOnly 'org.springframework.boot:spring-boot-devtools:2.6.7'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.7'
+    //test용 메모리 DB
+    runtimeOnly 'com.h2database:h2'
 }
 
 tasks.named('test') {

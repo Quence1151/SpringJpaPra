@@ -24,6 +24,19 @@
 3. 테스트 케이스를 작성해서 검증
 4. 웹 계층 적용
 
+### 패키지 구조
+- com.springjpapra
+  - domain
+  - exception
+  - repository
+  - service
+  - web
+### 계층형 구조
+- controller, web: 웹 계층
+- service: 비즈니스 로직, 트랜잭션 처리
+- repository: JPA를 직접 사용하는 계층, 엔티티 매니저 사용
+- domain: 엔티티가 모여 있는 계층, 모든 계층에서 사용
+
 ## 강의 내용<br>
 - 프로젝트 환경설정
 - 요구사항 분석
