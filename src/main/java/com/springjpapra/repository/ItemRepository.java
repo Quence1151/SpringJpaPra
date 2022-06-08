@@ -17,6 +17,7 @@ public class ItemRepository {
             em.persist(item);
         }else {
             em.merge(item);
+            //머지를 할 경우 설정하지 않은 모든 값에 대하여 null 삽입
         }
     }
 
