@@ -1,13 +1,11 @@
 package com.springjpapra.service;
 
-import com.springjpapra.domain.Delivery;
-import com.springjpapra.domain.Member;
-import com.springjpapra.domain.Order;
-import com.springjpapra.domain.OrderItem;
+import com.springjpapra.domain.*;
 import com.springjpapra.domain.item.Item;
 import com.springjpapra.repository.ItemRepository;
 import com.springjpapra.repository.MemberRepository;
 import com.springjpapra.repository.OrderRepository;
+import com.springjpapra.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +16,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class OrderService {
+
     private final OrderRepository orderRepository;
     private final MemberRepository memberRepository;
     private final ItemRepository itemRepository;
@@ -27,6 +26,7 @@ public class OrderService {
      */
     @Transactional
     public Long order(Long memberId, Long itemId, int count) {
+
         //엔티티 조회
         Member member = memberRepository.findOne(memberId);
         Item item = itemRepository.findOne(itemId);
@@ -34,6 +34,7 @@ public class OrderService {
         //배송정보 생성
         Delivery delivery = new Delivery();
         delivery.setAddress(member.getAddress());
+        delivery.setStatus(DeliveryStatus.READY);
 
         //주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
@@ -47,7 +48,6 @@ public class OrderService {
         return order.getId();
     }
 
-
     /**
      * 주문 취소
      */
@@ -59,13 +59,8 @@ public class OrderService {
         order.cancel();
     }
 
-
-    /**
-     *검색
-     */
-/*    public List<Order> findAll(OrderSearch orderSearch) {
-        return orderRepository.findAll(orderSearch);
-    }*/
-
-
+    //검색
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByString(orderSearch);
+    }
 }
